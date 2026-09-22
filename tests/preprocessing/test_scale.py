@@ -126,6 +126,20 @@ def test_minmax_scaler_default_unchanged():
     assert scaler.transform_one({"x": 20.0}) == {"x": 0.5}
 
 
+def test_minmax_scaler_unseen_feature_cumulative_returns_zero():
+    """A feature never seen in learn_one must transform to 0.0, not nan."""
+    scaler = preprocessing.MinMaxScaler()
+    scaler.learn_one({"x": 10.0})
+    assert scaler.transform_one({"x": 10.0, "y": 5.0}) == {"x": 0.0, "y": 0.0}
+
+
+def test_minmax_scaler_unseen_feature_windowed_returns_zero():
+    """A feature never seen in learn_one must transform to 0.0, not nan, even with window_size."""
+    scaler = preprocessing.MinMaxScaler(window_size=3)
+    scaler.learn_one({"x": 10.0})
+    assert scaler.transform_one({"x": 10.0, "y": 5.0}) == {"x": 0.0, "y": 0.0}
+
+
 def test_maxabs_scaler_warm_start():
     scaler = preprocessing.MaxAbsScaler._from_state(abs_max={"x": 12.0})
     assert scaler.transform_one({"x": 6.0}) == {"x": 0.5}
