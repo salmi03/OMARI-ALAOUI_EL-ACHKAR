@@ -1,1 +1,1 @@
-{"regressions": []}
+{"regressions": [["bench_regression.LinearRegression.time_progressive_val('ChickWeights')", "graphs/arch-x86_64/branch-main/cpu-AMD EPYC 7763 64-Core Processor/machine-runnervmtr4k5/num_cpu-2/os-Linux 6.17.0-1022-azure/python-3.12/ram-8323969024/bench_regression.LinearRegression.time_progressive_val.json", {}, 0, 0.014886323000013135, 0.013833876999967742, [[4265, 4270, 0.013833876999967742, 0.014886323000013135]]]]}
